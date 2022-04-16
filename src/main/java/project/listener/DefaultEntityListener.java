@@ -16,6 +16,5 @@ public class DefaultEntityListener{
         //빈 주입
         UserRepository userRepository = BeanUtils.getBean(UserRepository.class);
         
-        
     }
 }
