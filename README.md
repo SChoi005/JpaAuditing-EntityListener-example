@@ -2,10 +2,10 @@
 > The reason why we use Jpa Auditing is that we automatically save created_by, created_at, updated_by, updated_at. <br/>
 Recording them in DB is important.
 
-### user entity 
+### User entity 
 > Add annotation <br/>
-@Entity
-@EntityLsteners({AuditingEntityListener.class})
+@Entity <br/>
+@EntityLsteners({AuditingEntityListener.class}) <br/>
 @CreatedBy          => when insert quary executes, created_by automatically saves in db.  <br/>
 @CreatedDate        => when insert quary executes, created_at automatically saves in db.  <br/>
 @LastModifiedBy     => when insert and update quary execute, updated_by automatically saves in db. <br/>
@@ -51,7 +51,7 @@ Recording them in DB is important.
 
 ```
 
-### implements AuditorAware
+### Implements AuditorAware
 > Write what will be saved in created_by and updated_by in getCurrentAuditor() method.
 
 ```bash
@@ -69,16 +69,17 @@ Recording them in DB is important.
 
 
 # Entity Listener
+> Entity listeners are useful for general purpose auditing or logging applications.
 
 ```bash
 
-    @PrePersist     // Insert호출 전 실행
-    @PreUpdate      // merge 호출 전 실행
-    @PreRemove      // Delete호출 전 실행
-    @PostPersist    // Insert호출 후 실행
-    @PostUpdate     // merge 호출 후 실행
-    @PostRemove     // Delete호출 후 실행
-    @PostLoad       // select호출 후 실행
+    @PrePersist     // Before Insert query 
+    @PreUpdate      // Before Update query 
+    @PreRemove      // Before Delete query 
+    @PostPersist    // After Insert query 
+    @PostUpdate     // After Update query 
+    @PostRemove     // After Delete query 
+    @PostLoad       // After select query 
 
 ```
 
