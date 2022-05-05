@@ -1,5 +1,7 @@
 package project.repository;
 
+import java.util.Optional;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Propagation;
@@ -9,5 +11,6 @@ import project.entity.UserHistory;
 
 @Repository
 public interface UserHistoryRepository extends JpaRepository<UserHistory, Long>{
-    public UserHistory findByUsername(String username);
+    @Transactional(readOnly = true, propagation = Propagation.REQUIRES_NEW)
+    public Optional<UserHistory> findByUsername(String username);
 }

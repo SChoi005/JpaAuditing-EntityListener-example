@@ -24,10 +24,15 @@ public class UserService{
     public ResponseEntity<User> update(User user){
         Optional<User> userTemp = userRepository.findByUsername(user.getUsername());
         
-        return ResponseEntity.ok().body(userTemp.map(u->{
-            u.setPassword(user.getPassword());
-            userRepository.save(u);
-            return u;
-        }).get());
+        User saveUser = new User();
+        
+        if(userTemp.isPresent()){
+            saveUser = userTemp.get();
+            saveUser.setPassword(user.getPassword());
+            
+            return ResponseEntity.ok().body(userRepository.saveAndFlush(saveUser));
+        }
+        else
+            return null;
     }
 }

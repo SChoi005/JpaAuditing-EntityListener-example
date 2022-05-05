@@ -82,6 +82,3 @@ Recording them in DB is important.
     @PostLoad       // After select query 
 
 ```
-
-
-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

@@ -54,7 +54,8 @@ public class UserEntityListener{
     @PostUpdate
     public void postUpdate(User o){
         UserHistoryRepository userHistoryRepository = BeanUtils.getBean(UserHistoryRepository.class);
-        UserHistory userHistory = userHistoryRepository.findByUsername(o.getUsername());
+        
+        UserHistory userHistory = userHistoryRepository.findByUsername(o.getUsername()).get();
         
         userHistory.setUsername(o.getUsername());
         userHistory.setPassword(o.getPassword());
@@ -62,6 +63,7 @@ public class UserEntityListener{
         userHistory.setUpdatedAt(o.getUpdatedAt());
         
         userHistoryRepository.save(userHistory);
+        log.info("{}", userHistory);
         
         log.info("\n<<<<<<postUpdate\n {}\n <<<<<<<<<", o.toString());        
     }
