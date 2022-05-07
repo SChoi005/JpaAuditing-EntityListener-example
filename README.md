@@ -11,7 +11,7 @@ Recording them in DB is important.
 @LastModifiedBy     => when insert and update quary execute, updated_by automatically saves in db. <br/>
 @LastModifiedDate   => when insert and update quary execute, updated_at automatically saves in db.
 
-```bash
+```java
     
     @EntityListeners({DefaultEntityListener.class, AuditingEntityListener.class})
     @Data
@@ -39,7 +39,7 @@ Recording them in DB is important.
 ### Application.java
 > Add @EnableJpaAuditing in Application.java
 
-```bash
+```java
 
     @EnableJpaAuditing
     @SpringBootApplication
@@ -54,7 +54,7 @@ Recording them in DB is important.
 ### Implements AuditorAware
 > Write what will be saved in created_by and updated_by in getCurrentAuditor() method.
 
-```bash
+```java
 
     @Component
     public class AuditAware implements AuditorAware<String>{
@@ -71,7 +71,7 @@ Recording them in DB is important.
 # Entity Listener
 > Entity listeners are useful for general purpose auditing or logging applications.
 
-```bash
+```java
 
     @PrePersist     // Before Insert query 
     @PreUpdate      // Before Update query 
